@@ -29,7 +29,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -46,7 +46,7 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.2.3</version>
+				<version>0.3.2</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -57,13 +57,13 @@
 				</executions>
 				<configuration>
 					<imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-					<imageTags>
-						<imageTag>${project.version}</imageTag>
-					</imageTags>
+          <!-- This conflicts with existing tags, need to investigate-->
+					<!--<imageTags>-->
+						<!--<imageTag>${project.version}</imageTag>-->
+					<!--</imageTags>-->
 					<baseImage>java</baseImage>
 					<entryPoint>
 						<!-- Don't let any auto-formatting break this line up -->
-						<!--["java", "-jar", "/${project.build.finalName}.jar", "-Dspring.config.location=file:/opt/properties/${project.build.finalName}/"]-->
 						["java", "-jar", "/${project.build.finalName}.jar"]
 					</entryPoint>
 					<!-- copy the service's jar file from target into the root directory of the image -->
